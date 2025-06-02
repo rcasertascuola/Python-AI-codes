@@ -1,0 +1,127 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header input[type="file"] {
+    margin-top: 0.5rem;
+    padding: 0.3rem;
+}
+
+main#lessonContainer {
+    width: 80%;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+#lessonTitle {
+    text-align: center;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.lesson-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.lesson-section h3 {
+    color: #555;
+    margin-top: 0;
+}
+
+.lesson-section p, .lesson-section div.section-content { /* Target the content div specifically */
+    margin-bottom: 0.5rem;
+}
+
+textarea.section-notes,
+textarea.exercise-notes,
+textarea#overallNotes {
+    width: 98%; /* Adjusted for padding */
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-height: 60px;
+    font-family: inherit;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.options-container .option { /* Target the container for each radio/label pair */
+    margin-bottom: 0.3rem;
+    display: flex; /* Align radio button and label nicely */
+    align-items: center;
+}
+
+.options-container input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+.blanks-container {
+    margin-top: 0.5rem;
+}
+.blanks-container p { /* Style for the question text containing blanks */
+    margin-bottom: 0.5em;
+}
+
+.blanks-container .blank-wrapper { /* Style for each label + input pair */
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.blanks-container label {
+    margin-right: 0.5rem;
+    flex-shrink: 0; /* Prevent label from shrinking */
+}
+
+.blanks-container input[type="text"].blank-input {
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 0.3rem; /* Consistent margin */
+    flex-grow: 1; /* Allow input to take available space */
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+button#downloadButton {
+    background: #5cb85c;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button#downloadButton:hover {
+    background: #4cae4c;
+}

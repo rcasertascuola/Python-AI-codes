@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Lesson</title>
+    <link rel="stylesheet" href="style.css"> <!-- We'll create this later -->
+</head>
+<body>
+    <header>
+        <h1>Interactive Lesson Viewer</h1>
+        <input type="file" id="jsonFileInput" accept=".json">
+    </header>
+
+    <main id="lessonContainer">
+        <h2 id="lessonTitle"></h2>
+        <div id="lessonSections">
+            <!-- Lesson sections will be dynamically inserted here -->
+        </div>
+        <div id="overallNotesSection">
+            <h3>Overall Lesson Notes</h3>
+            <textarea id="overallNotes" placeholder="Write your general notes about the lesson here..."></textarea>
+        </div>
+    </main>
+
+    <footer>
+        <button id="downloadButton">Download Updated Lesson</button>
+    </footer>
+
+    <script src="script.js"></script> <!-- We'll create this later -->
+</body>
+</html>

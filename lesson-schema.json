@@ -1,0 +1,44 @@
+{
+  "lessonTitle": "Introduction to Programming",
+  "sections": [
+    {
+      "type": "text",
+      "title": "What is Programming?",
+      "content": "<p>Programming is the process of creating a set of instructions that tell a computer how to perform a task.</p><p>It can be done using a variety of computer programming languages, such as Python, JavaScript, Java, C++, etc.</p>",
+      "notes": "",
+      "highlights": []
+    },
+    {
+      "type": "exercise",
+      "title": "Quick Check",
+      "exerciseType": "multiple-choice",
+      "question": "Which of the following is a programming language?",
+      "options": [
+        {"text": "HTML", "correct": false},
+        {"text": "Python", "correct": true},
+        {"text": "JPEG", "correct": false},
+        {"text": "CSS", "correct": false}
+      ],
+      "userAnswer": null,
+      "notes": ""
+    },
+    {
+      "type": "text",
+      "title": "Why Learn Programming?",
+      "content": "<p>Learning to program can open up a world of opportunities. It helps in developing problem-solving skills, logical thinking, and creativity.</p>",
+      "notes": "",
+      "highlights": []
+    },
+    {
+        "type": "exercise",
+        "title": "Fill in the Blanks",
+        "exerciseType": "fill-in-the-blanks",
+        "question": "The process of finding and fixing errors in code is called _________.",
+        "blanks": [
+            {"id": "blank1", "correctAnswer": "debugging", "userAnswer": ""}
+        ],
+        "notes": ""
+    }
+  ],
+  "overallNotes": ""
+}
