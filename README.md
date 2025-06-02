@@ -1,61 +1,29 @@
-# Project Title
+# App di Studio Avanzata
 
-This is a brief description of the project. 
+L'"App di Studio Avanzata" è un'applicazione web progettata per facilitare lo studio interattivo di lezioni fornite in formato JSON. Gli utenti possono caricare i file delle lezioni, interagire con il contenuto attraverso evidenziazioni e annotazioni, completare esercizi e scrivere riassunti, salvando poi i loro progressi.
 
-## Getting Started
+## Funzionalità Chiave
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+*   Caricamento di lezioni da file JSON locali.
+*   Visualizzazione di vari elementi della lezione (testo, immagini, video, elenchi, citazioni).
+*   Esercizi interattivi (scelta multipla, vero/falso, risposta aperta) con funzionalità di visualizzazione delle correzioni.
+*   Evidenziazione del testo nel contenuto della lezione.
+*   Creazione di note/annotazioni collegate a specifiche parti del testo.
+*   Redazione di riassunti generali della lezione.
+*   Salvataggio dei progressi (informazioni studente, risposte, note, evidenziazioni) in un nuovo file JSON.
+*   Schema di colori dell'interfaccia utente personalizzabile (impostazioni salvate nel localStorage).
+*   Funzionalità di stampa in PDF del contenuto della lezione e dei dati utente.
+*   Design responsivo per utilizzo su desktop e dispositivi mobili.
 
-### Prerequisites
+## Utilizzo Base
 
-What things you need to install the software and how to install them.
+1.  Apri il file `index.html` in un browser web moderno.
+2.  Clicca il pulsante "Carica" per caricare un file JSON della lezione (ad esempio, il file `lezione.json` fornito nel progetto).
+3.  Interagisci con il contenuto della lezione utilizzando la vista principale e gli strumenti presenti nella barra laterale (desktop) o nel menu offcanvas (mobile).
+4.  Salva il tuo lavoro utilizzando il pulsante "Salva", che avvierà il download di un nuovo file JSON contenente i tuoi progressi.
 
-### Installing
+## Tecnologie Utilizzate
 
-A step-by-step series of examples that tell you how to get a development environment running.
-
-## Running the tests
-
-Explain how to run the automated tests for this system.
-
-### Break down into end-to-end tests
-
-Explain what these tests test and why.
-
-### And coding style tests
-
-Explain what these tests test and why.
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system.
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - RSS Atom util
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+*   HTML5
+*   CSS3 (con Bootstrap 5)
+*   JavaScript (ES6+)
