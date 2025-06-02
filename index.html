@@ -1,32 +1,234 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Lesson</title>
-    <link rel="stylesheet" href="style.css"> <!-- We'll create this later -->
+    <title>App di Studio Avanzata</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Interactive Lesson Viewer</h1>
-        <input type="file" id="jsonFileInput" accept=".json">
-    </header>
-
-    <main id="lessonContainer">
-        <h2 id="lessonTitle"></h2>
-        <div id="lessonSections">
-            <!-- Lesson sections will be dynamically inserted here -->
+    <!-- Navbar Principale -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="main-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" id="lesson-title-brand">App Studio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> Info Studente
+                        </a>
+                        <div class="dropdown-menu p-3" id="student-info-form-container" style="min-width: 280px;">
+                            <div class="mb-2">
+                                <label for="student-name" class="form-label form-label-sm">Nome</label>
+                                <input type="text" class="form-control form-control-sm" id="student-name" placeholder="Nome">
+                            </div>
+                            <div class="mb-2">
+                                <label for="student-surname" class="form-label form-label-sm">Cognome</label>
+                                <input type="text" class="form-control form-control-sm" id="student-surname" placeholder="Cognome">
+                            </div>
+                            <div class="mb-2">
+                                <label for="student-class" class="form-label form-label-sm">Classe</label>
+                                <input type="text" class="form-control form-control-sm" id="student-class" placeholder="Classe">
+                            </div>
+                            <div>
+                                <label for="student-date" class="form-label form-label-sm">Data</label>
+                                <input type="date" class="form-control form-control-sm" id="student-date">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <button class="nav-link btn btn-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
+                            <i class="bi bi-tools"></i> Strumenti
+                        </button>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <input type="file" id="json-lesson-file-input" accept=".json" style="display: none;">
+                    <button class="btn btn-primary btn-sm me-2" id="load-lesson-btn" title="Carica Lezione"><i class="bi bi-upload"></i> Carica</button>
+                    <button class="btn btn-success btn-sm me-2" id="save-lesson-btn" title="Salva Lezione"><i class="bi bi-save"></i> Salva</button>
+                    <button class="btn btn-info btn-sm me-2" id="print-pdf-btn" title="Stampa/PDF"><i class="bi bi-printer"></i> Stampa</button>
+                    <button class="btn btn-secondary btn-sm" id="settings-btn" title="Impostazioni" data-bs-toggle="modal" data-bs-target="#settingsModal"><i class="bi bi-gear-fill"></i></button>
+                </div>
+            </div>
         </div>
-        <div id="overallNotesSection">
-            <h3>Overall Lesson Notes</h3>
-            <textarea id="overallNotes" placeholder="Write your general notes about the lesson here..."></textarea>
+    </nav>
+
+    <!-- Contenuto Principale -->
+    <div class="container-fluid app-main-container">
+        <div class="row g-0 flex-grow-1">
+            <!-- Colonna Lezione -->
+            <div class="col-lg-7 col-xl-8 lesson-viewer-col order-lg-1">
+                <div class="lesson-viewer-content p-3">
+                    <h2 id="lesson-main-title-display" class="mb-4 h4">Nessuna lezione caricata</h2>
+                    <div id="lesson-elements-container">
+                        <p class="placeholder text-muted">Clicca 'Carica' per iniziare lo studio.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonna Strumenti (Sidebar) - VISIBILE SOLO SU LG E SUPERIORI -->
+            <div class="col-lg-5 col-xl-4 sidebar-col order-lg-2 d-none d-lg-flex flex-column" id="desktop-sidebar-wrapper">
+                <ul class="nav nav-tabs nav-fill sticky-top bg-light" id="sidebarTabsDesktop" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="annotations-nav-tab-desktop" data-bs-toggle="tab" data-bs-target="#annotations-tab-pane-desktop" type="button" role="tab" aria-controls="annotations-tab-pane-desktop" aria-selected="true"><i class="bi bi-pencil-square"></i> Annotazioni</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="summaries-nav-tab-desktop" data-bs-toggle="tab" data-bs-target="#summaries-tab-pane-desktop" type="button" role="tab" aria-controls="summaries-tab-pane-desktop" aria-selected="false"><i class="bi bi-card-text"></i> Riassunti</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="exercises-nav-tab-desktop" data-bs-toggle="tab" data-bs-target="#exercises-tab-pane-desktop" type="button" role="tab" aria-controls="exercises-tab-pane-desktop" aria-selected="false"><i class="bi bi-check2-square"></i> Esercizi</button>
+                    </li>
+                </ul>
+                <div class="tab-content flex-grow-1 overflow-auto p-3">
+                    <div class="tab-pane fade show active" id="annotations-tab-pane-desktop" role="tabpanel" aria-labelledby="annotations-nav-tab-desktop">
+                        <h3 class="h5 mb-3">Le Mie Annotazioni</h3>
+                        <div id="annotations-list-desktop">
+                            <p class="text-muted small">Nessuna annotazione ancora.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="summaries-tab-pane-desktop" role="tabpanel" aria-labelledby="summaries-nav-tab-desktop">
+                        <h3 class="h5 mb-3">I Miei Riassunti</h3>
+                        <textarea class="form-control mb-2" id="summary-editor-desktop" placeholder="Scrivi qui il tuo riassunto..." rows="5"></textarea>
+                        <button class="btn btn-primary btn-sm w-100" id="save-summary-btn-desktop">Salva Riassunto</button>
+                        <div id="summaries-list-desktop" class="mt-3">
+                             <p class="text-muted small">Nessun riassunto ancora.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="exercises-tab-pane-desktop" role="tabpanel" aria-labelledby="exercises-nav-tab-desktop">
+                        <h3 class="h5 mb-3">Risposte Esercizi</h3>
+                        <button class="btn btn-outline-secondary btn-sm mb-3 w-100" id="toggle-corrections-btn-desktop">Mostra Correzioni</button>
+                        <div id="exercise-responses-container-desktop">
+                             <p class="text-muted small">Nessun esercizio da visualizzare.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        <button id="downloadButton">Download Updated Lesson</button>
-    </footer>
+    <!-- Offcanvas Sidebar per Mobile -->
+    <div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarOffcanvasLabel"><i class="bi bi-tools"></i> Strumenti di Studio</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0 d-flex flex-column">
+            <ul class="nav nav-tabs nav-fill" id="sidebarTabsMobile" role="tablist">
+                 <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="annotations-nav-tab-mobile" data-bs-toggle="tab" data-bs-target="#annotations-tab-pane-mobile" type="button" role="tab" aria-controls="annotations-tab-pane-mobile" aria-selected="true"><i class="bi bi-pencil-square"></i> Annotazioni</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="summaries-nav-tab-mobile" data-bs-toggle="tab" data-bs-target="#summaries-tab-pane-mobile" type="button" role="tab" aria-controls="summaries-tab-pane-mobile" aria-selected="false"><i class="bi bi-card-text"></i> Riassunti</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="exercises-nav-tab-mobile" data-bs-toggle="tab" data-bs-target="#exercises-tab-pane-mobile" type="button" role="tab" aria-controls="exercises-tab-pane-mobile" aria-selected="false"><i class="bi bi-check2-square"></i> Esercizi</button>
+                </li>
+            </ul>
+            <div class="tab-content flex-grow-1 overflow-auto p-3">
+                <div class="tab-pane fade show active" id="annotations-tab-pane-mobile" role="tabpanel" aria-labelledby="annotations-nav-tab-mobile">
+                    <h3 class="h5 mb-3">Le Mie Annotazioni</h3>
+                    <div id="annotations-list-mobile">
+                        <p class="text-muted small">Nessuna annotazione ancora.</p>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="summaries-tab-pane-mobile" role="tabpanel" aria-labelledby="summaries-nav-tab-mobile">
+                    <h3 class="h5 mb-3">I Miei Riassunti</h3>
+                    <textarea class="form-control mb-2" id="summary-editor-mobile" placeholder="Scrivi qui il tuo riassunto..." rows="5"></textarea>
+                    <button class="btn btn-primary btn-sm w-100" id="save-summary-btn-mobile">Salva Riassunto</button>
+                    <div id="summaries-list-mobile" class="mt-3">
+                         <p class="text-muted small">Nessun riassunto ancora.</p>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="exercises-tab-pane-mobile" role="tabpanel" aria-labelledby="exercises-nav-tab-mobile">
+                    <h3 class="h5 mb-3">Risposte Esercizi</h3>
+                    <button class="btn btn-outline-secondary btn-sm mb-3 w-100" id="toggle-corrections-btn-mobile">Mostra Correzioni</button>
+                    <div id="exercise-responses-container-mobile">
+                         <p class="text-muted small">Nessun esercizio da visualizzare.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="script.js"></script> <!-- We'll create this later -->
+    <!-- Modale Annotazioni -->
+    <div class="modal fade" id="annotationModal" tabindex="-1" aria-labelledby="annotationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="annotationModalLabel">Nuova Annotazione</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Testo Selezionato:</strong> <em id="selected-text-preview"></em></p>
+                    <textarea class="form-control mb-2" id="annotation-text" placeholder="Scrivi la tua annotazione..." rows="4"></textarea>
+                    <label for="annotation-type" class="form-label">Tipo:</label>
+                    <select class="form-select" id="annotation-type">
+                        <option value="Riflessione" selected>Riflessione</option>
+                        <option value="Domanda">Domanda</option>
+                        <option value="Ricerca">Ricerca</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-primary" id="save-annotation-btn">Salva Annotazione</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Contestuale Testo (custom) -->
+    <div id="text-selection-menu" class="dropdown-menu shadow-sm" style="display:none; position:absolute;">
+        <button class="dropdown-item" type="button" id="highlight-text-btn"><i class="bi bi-highlighter"></i> Evidenzia</button>
+        <button class="dropdown-item" type="button" id="annotate-text-btn-ctx"><i class="bi bi-chat-left-quote"></i> Annota</button>
+    </div>
+
+    <!-- Area Stampa Header (nascosta) -->
+    <div id="print-header-area" style="display:none;"></div>
+
+    <!-- Modale Impostazioni Grafiche -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel">Impostazioni Aspetto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="primary-color-picker" class="form-label">Colore Primario (Navbar):</label>
+                        <input type="color" class="form-control form-control-color w-100" id="primary-color-picker" title="Scegli colore primario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="secondary-color-picker" class="form-label">Colore Secondario (Bottoni Azione):</label>
+                        <input type="color" class="form-control form-control-color w-100" id="secondary-color-picker" title="Scegli colore secondario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="background-color-picker" class="form-label">Colore Sfondo App:</label>
+                        <input type="color" class="form-control form-control-color w-100" id="background-color-picker" title="Scegli colore sfondo app">
+                    </div>
+                    <div class="mb-3">
+                        <label for="text-color-picker" class="form-label">Colore Testo Principale:</label>
+                        <input type="color" class="form-control form-control-color w-100" id="text-color-picker" title="Scegli colore testo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="highlight-color-picker" class="form-label">Colore Evidenziazione:</label>
+                        <input type="color" class="form-control form-control-color w-100" id="highlight-color-picker" title="Scegli colore evidenziazione">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" id="reset-colors-btn">Reset Default</button>
+                    <button type="button" class="btn btn-primary" id="apply-colors-btn">Applica e Salva</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
 </body>
 </html>

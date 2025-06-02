@@ -1,0 +1,142 @@
+{
+  "info_studente": {
+    "nome": "Alex",
+    "cognome": "Verdi",
+    "classe": "4A Liceo Scientifico",
+    "data_sessione": "2023-11-06"
+  },
+  "titolo_lezione": "Viaggio Completo: Dalle Nebulose alla Logica Booleana",
+  "elementi_lezione": [
+    { 
+      "id": "intro_01", 
+      "tipo": "paragrafo", 
+      "contenuto": "Questa lezione offre un percorso che spazia dall'immensità del cosmo ai fondamenti logici dell'informatica. Inizieremo con l'astrofisica, esplorando la nascita e l'evoluzione delle stelle, per poi immergerci nel mondo della logica booleana, cruciale per comprendere il funzionamento dei computer." 
+    },
+    { 
+      "id": "astro_img_01", 
+      "tipo": "immagine", 
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/1024px-Crab_Nebula.jpg", 
+      "didascalia": "La Nebulosa del Granchio, un resto di supernova." 
+    },
+    { 
+      "id": "astro_p_01", 
+      "tipo": "paragrafo", 
+      "contenuto": "Le stelle nascono da enormi nubi di gas e polveri chiamate nebulose. La gravità fa collassare queste nubi, aumentando la temperatura e la pressione al centro fino a innescare la fusione nucleare, il motore delle stelle. La vita di una stella dipende dalla sua massa: stelle piccole come il Sole vivono miliardi di anni, mentre stelle massicce bruciano il loro combustibile molto più rapidamente, concludendo la loro esistenza in spettacolari esplosioni di supernova." 
+    },
+    { 
+      "id": "astro_list_01", 
+      "tipo": "elenco_puntato", 
+      "titolo": "Fasi Finali della Vita Stellare (semplificato):", 
+      "elementi": ["Nana Bianca (per stelle di piccola/media massa)", "Stella di Neutroni (per stelle più massicce)", "Buco Nero (per stelle estremamente massicce)"] 
+    },
+    { 
+      "id": "logica_trans_p_01", 
+      "tipo": "paragrafo", 
+      "contenuto": "Dalle stelle ai bit. La logica booleana, sviluppata da George Boole nel XIX secolo, è un sistema algebrico che opera su valori di verità: Vero (True, 1) e Falso (False, 0). Questa logica è alla base della progettazione dei circuiti digitali e quindi di tutti i computer moderni." 
+    },
+    { 
+      "id": "logica_video_01", 
+      "tipo": "video_embed", 
+      "titolo_video": "Introduzione alla Logica Booleana", 
+      "iframe_src": "https://www.youtube.com/embed/gI-qXk7XojA", 
+      "didascalia": "Un'introduzione ai concetti base della logica booleana." 
+    },
+    { 
+      "id": "logica_ops_p_01", 
+      "tipo": "paragrafo", 
+      "contenuto": "Gli operatori booleani fondamentali sono AND, OR e NOT. L'operatore AND restituisce Vero solo se entrambi gli operandi sono Veri. L'operatore OR restituisce Vero se almeno uno degli operandi è Vero. L'operatore NOT inverte il valore di verità dell'operando." 
+    },
+    { 
+      "id": "logica_quote_01", 
+      "tipo": "citazione", 
+      "testo": "Contrariwise, if it was so, it might be; and if it were so, it would be; but as it isn't, it ain't. That's logic.", 
+      "fonte": "Lewis Carroll, Through the Looking-Glass" 
+    },
+    { 
+      "id": "logica_elenco_num_01", 
+      "tipo": "elenco_numerato", 
+      "titolo": "Esempi di Operazioni Booleane (A, B sono input):", 
+      "elementi": ["A AND B: Vero solo se A=Vero e B=Vero.", "A OR B: Vero se A=Vero o B=Vero (o entrambi).", "NOT A: Se A=Vero, NOT A=Falso; se A=Falso, NOT A=Vero."] 
+    },
+    { 
+      "id": "ex_astro_01", 
+      "tipo": "esercizio_domanda_aperta", 
+      "testo_domanda": "Cosa determina principalmente la durata della vita di una stella e le sue fasi finali?" 
+    },
+    { 
+      "id": "ex_logica_01", 
+      "tipo": "esercizio_vero_falso", 
+      "testo_domanda": "Se A è Vero e B è Falso, l'espressione (A AND B) OR (NOT B) è Vera.", 
+      "opzioni": ["Vero", "Falso"], 
+      "risposta_corretta": "Vero" 
+    },
+    { 
+      "id": "ex_astro_02", 
+      "tipo": "esercizio_scelta_multipla", 
+      "testo_domanda": "Quale dei seguenti oggetti celesti NON è un possibile stadio finale della vita di una stella?", 
+      "opzioni": ["Nana Bianca", "Gigante Rossa", "Buco Nero", "Stella di Neutroni"], 
+      "risposta_corretta": "Gigante Rossa", 
+      "permetti_multipla_selezione": false 
+    },
+    { 
+      "id": "ex_logica_02", 
+      "tipo": "esercizio_scelta_multipla", 
+      "testo_domanda": "Dati A=Vero, B=Falso, C=Vero. Quali delle seguenti espressioni sono Vere? (Multipla scelta)", 
+      "opzioni": ["A AND (B OR C)", "NOT B AND C", "(A OR B) AND (NOT C)", "A AND B AND C"], 
+      "risposta_corretta": ["A AND (B OR C)", "NOT B AND C"], 
+      "permetti_multipla_selezione": true 
+    },
+    { 
+      "id": "ex_astro_03", 
+      "tipo": "esercizio_domanda_aperta", 
+      "testo_domanda": "Descrivi brevemente il ruolo della gravità nella formazione stellare." 
+    },
+    { 
+      "id": "ex_logica_03", 
+      "tipo": "esercizio_vero_falso", 
+      "testo_domanda": "Un'espressione booleana può avere solo due possibili risultati.", 
+      "opzioni": ["Vero", "Falso"], 
+      "risposta_corretta": "Vero"
+    },
+    { 
+      "id": "ex_inter_01", 
+      "tipo": "esercizio_domanda_aperta", 
+      "testo_domanda": "Riesci a pensare a un'analogia tra un concetto astronomico e un concetto di programmazione/logica discusso?" 
+    },
+    { 
+      "id": "ex_logica_04", 
+      "tipo": "esercizio_scelta_multipla", 
+      "testo_domanda": "Quale operatore logico corrisponde alla congiunzione grammaticale 'e'?", 
+      "opzioni": ["OR", "NOT", "AND", "XOR"], 
+      "risposta_corretta": "AND", 
+      "permetti_multipla_selezione": false 
+    }
+  ],
+  "annotazioni_utente": [
+    {
+        "id_annotazione": "ann_custom_1",
+        "riferimento_elemento_id": "astro_p_01",
+        "testo_riferimento": "esplosioni di supernova",
+        "tipo_annotazione": "Ricerca",
+        "contenuto_annotazione": "Cercare immagini e dettagli sugli elementi creati durante una supernova."
+    }
+  ],
+  "riassunti_utente": [
+    {
+        "id_riassunto": "sum_custom_1",
+        "contenuto_riassunto": "La lezione inizia con l'astrofisica, spiegando come nascono le stelle dalle nebulose grazie alla gravità e alla fusione nucleare. La massa stellare ne determina il ciclo vitale e la fine (nana bianca, stella di neutroni, buco nero). Poi si passa alla logica booleana (Vero/Falso, 1/0) con gli operatori AND, OR, NOT, fondamentali per i computer."
+    }
+  ],
+  "risposte_utente": {
+    "ex_astro_01": "La massa iniziale della stella è il fattore principale.",
+    "ex_logica_01": "Vero",
+    "ex_astro_02": "Gigante Rossa" 
+  },
+  "evidenziazioni_utente": [
+    {
+        "id_evidenziazione": "ev_custom_1",
+        "riferimento_elemento_id": "logica_ops_p_01",
+        "testo_evidenziato": "AND, OR e NOT"
+    }
+  ]
+}

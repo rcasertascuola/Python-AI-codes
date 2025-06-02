@@ -1,127 +1,245 @@
+/* Variabili CSS per i colori - valori di default, sovrascritte da JS e localStorage */
+:root {
+    --bs-primary-rgb: 52, 58, 64; /*navbar bg-dark */
+    --bs-secondary-rgb: 108, 117, 125; /* btn-secondary */
+    --bs-success-rgb: 25, 135, 84;
+    --bs-info-rgb: 13, 202, 240;
+    --bs-warning-rgb: 255, 193, 7;
+    --bs-light-rgb: 248, 249, 250; /* bg-light */
+    --bs-dark-rgb: 33, 37, 41;
+
+    /* Nostre variabili custom, inizializzate con i default di app.js se localStorage è vuoto */
+    --app-primary-color: rgb(var(--bs-primary-rgb));
+    --app-secondary-color: rgb(var(--bs-secondary-rgb));
+    --app-bg-color: #f0f2f5; 
+    --app-main-text-color: #212529;
+    --app-highlight-bg-color: yellow;
+    --app-highlight-text-color: black;
+    --app-lesson-viewer-bg: white;
+    --app-sidebar-bg: rgb(var(--bs-light-rgb));
+    --app-primary-text-color: white; 
+    --app-secondary-text-color: white;
+}
+
 body {
-    font-family: sans-serif;
+    padding-top: 56px; 
+    background-color: var(--app-bg-color);
+    color: var(--app-main-text-color);
+    transition: background-color 0.2s, color 0.2s;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
 }
 
-header {
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
+#main-navbar {
+    background-color: var(--app-primary-color) !important;
+    transition: background-color 0.2s;
+}
+#main-navbar .navbar-brand,
+#main-navbar .nav-link {
+    color: var(--app-primary-text-color) !important;
+    transition: color 0.2s;
+}
+.navbar-dark .navbar-toggler-icon {
+   filter: invert(1) grayscale(100%) brightness(200%); 
+}
+#student-info-form-container {
+    min-width: 280px; 
+    background-color: var(--app-lesson-viewer-bg); 
+    color: var(--app-main-text-color); 
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+#student-info-form-container .form-label-sm { font-size: 0.875em; margin-bottom: 0.2rem; }
+
+.app-main-container {
+    height: calc(100vh - 56px);
+    display: flex; 
+}
+.app-main-container > .row {
+    overflow: hidden;
+    flex-grow: 1; 
 }
 
-header h1 {
-    margin: 0;
-}
-
-header input[type="file"] {
-    margin-top: 0.5rem;
-    padding: 0.3rem;
-}
-
-main#lessonContainer {
-    width: 80%;
-    margin: 2rem auto;
-    background: #fff;
-    padding: 1.5rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-}
-
-#lessonTitle {
-    text-align: center;
-    color: #333;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.lesson-section {
-    margin-bottom: 2rem;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-.lesson-section h3 {
-    color: #555;
-    margin-top: 0;
-}
-
-.lesson-section p, .lesson-section div.section-content { /* Target the content div specifically */
-    margin-bottom: 0.5rem;
-}
-
-textarea.section-notes,
-textarea.exercise-notes,
-textarea#overallNotes {
-    width: 98%; /* Adjusted for padding */
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    min-height: 60px;
-    font-family: inherit;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
-
-.options-container .option { /* Target the container for each radio/label pair */
-    margin-bottom: 0.3rem;
-    display: flex; /* Align radio button and label nicely */
-    align-items: center;
-}
-
-.options-container input[type="radio"] {
-    margin-right: 0.5rem;
-}
-
-.blanks-container {
-    margin-top: 0.5rem;
-}
-.blanks-container p { /* Style for the question text containing blanks */
-    margin-bottom: 0.5em;
-}
-
-.blanks-container .blank-wrapper { /* Style for each label + input pair */
-    margin-bottom: 0.5rem;
+.lesson-viewer-col, .sidebar-col { /* .sidebar-col si riferisce a #desktop-sidebar-wrapper */
+    height: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+}
+.lesson-viewer-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: var(--app-lesson-viewer-bg);
+    transition: background-color 0.2s;
+}
+/* Stili per la sidebar desktop */
+#desktop-sidebar-wrapper {
+    background-color: var(--app-sidebar-bg);
+    border-left: 1px solid var(--bs-border-color);
+    transition: background-color 0.2s;
+}
+#desktop-sidebar-wrapper .nav-tabs {
+    background-color: var(--app-sidebar-bg) !important;
+    border-bottom: 1px solid var(--bs-border-color);
+    transition: background-color 0.2s;
+}
+#desktop-sidebar-wrapper .nav-tabs .nav-link { 
+    color: var(--app-main-text-color); 
+    border-radius: 0.375rem 0.375rem 0 0;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+#desktop-sidebar-wrapper .nav-tabs .nav-link.active {
+    background-color: var(--app-lesson-viewer-bg); 
+    border-color: var(--bs-border-color) var(--bs-border-color) var(--app-lesson-viewer-bg);
+    font-weight: 600;
+    color: var(--app-primary-color);
+}
+#desktop-sidebar-wrapper .tab-content {
+    background-color: var(--app-lesson-viewer-bg); 
+    flex-grow: 1;
+    overflow-y: auto; 
+    transition: background-color 0.2s;
 }
 
-.blanks-container label {
-    margin-right: 0.5rem;
-    flex-shrink: 0; /* Prevent label from shrinking */
+/* Stili per Offcanvas mobile */
+.offcanvas {
+    background-color: var(--app-sidebar-bg);
+    color: var(--app-main-text-color);
+    transition: background-color 0.2s, color 0.2s;
+}
+.offcanvas .nav-tabs {
+    background-color: var(--app-sidebar-bg) !important;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+.offcanvas .nav-tabs .nav-link {
+    color: var(--app-main-text-color);
+    border-radius: 0; 
+}
+.offcanvas .nav-tabs .nav-link.active {
+    background-color: var(--app-lesson-viewer-bg);
+    border-color: var(--bs-border-color) var(--bs-border-color) var(--app-lesson-viewer-bg);
+    color: var(--app-primary-color);
+}
+.offcanvas .tab-content {
+    background-color: var(--app-lesson-viewer-bg);
+}
+.offcanvas-header {
+    border-bottom: 1px solid var(--bs-border-color);
+    background-color: color-mix(in srgb, var(--app-sidebar-bg) 90%, black 5%);
+}
+.offcanvas-title {
+    color: var(--app-main-text-color);
 }
 
-.blanks-container input[type="text"].blank-input {
-    padding: 0.3rem;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 0.3rem; /* Consistent margin */
-    flex-grow: 1; /* Allow input to take available space */
-}
 
-footer {
+#lesson-elements-container .placeholder {
+    color: #6c757d; 
+    font-style: italic;
     text-align: center;
-    padding: 1rem 0;
-    margin-top: 2rem;
+    padding: 20px;
 }
-
-button#downloadButton {
-    background: #5cb85c;
-    color: white;
-    padding: 0.7rem 1.5rem;
-    border: none;
-    border-radius: 5px;
+#lesson-elements-container .lesson-paragraph .highlighted {
+    background-color: var(--app-highlight-bg-color);
+    color: var(--app-highlight-text-color);
+    padding: 0.1em 0.05em;
+    border-radius: 3px;
     cursor: pointer;
-    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+.exercise {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.375rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--app-sidebar-bg); 
+    transition: background-color 0.2s;
+}
+.annotation-item, .summary-item {
+    background-color: var(--app-lesson-viewer-bg);
+    border: 1px solid var(--bs-border-color);
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.2s;
+}
+.annotation-item small { font-size: 0.8em; color: #6c757d; }
+.annotation-item strong { font-weight: 600; }
+
+#text-selection-menu { 
+    z-index: 1056; 
+    background-color: var(--app-lesson-viewer-bg);
+    border: 1px solid var(--bs-border-color);
+}
+#text-selection-menu .dropdown-item { 
+    cursor: pointer; 
+    color: var(--app-main-text-color);
+}
+#text-selection-menu .dropdown-item:hover {
+    background-color: var(--app-sidebar-bg);
 }
 
-button#downloadButton:hover {
-    background: #4cae4c;
+/* Bottoni Azioni principali */
+#main-navbar .btn-primary { /* "Carica" */
+    background-color: var(--app-secondary-color) !important;
+    border-color: var(--app-secondary-color) !important;
+    color: var(--app-secondary-text-color) !important;
+}
+#main-navbar .btn-primary:hover {
+    background-color: color-mix(in srgb, var(--app-secondary-color) 85%, black) !important;
+    border-color: color-mix(in srgb, var(--app-secondary-color) 85%, black) !important;
+}
+/* Colori specifici per bottoni (Bootstrap default o custom) */
+/* #main-navbar .btn-success { ... } */
+/* #main-navbar .btn-info { ... } */
+/* #main-navbar .btn-secondary { ... } (per settings) */
+
+
+/* Responsive: Su schermi piccoli (sotto lg) */
+@media (max-width: 991.98px) {
+    .app-main-container {
+        /* La riga interna a .app-main-container gestirà lo scroll se necessario */
+    }
+    .lesson-viewer-col {
+        /* Occupa tutta la larghezza disponibile */
+    }
+    /* #desktop-sidebar-wrapper è d-none d-lg-flex, quindi già nascosta */
+    /* .offcanvas gestisce la sua visualizzazione/nascondiglio */
+}
+
+/* Stili per la Stampa */
+@media print {
+    :root { 
+        --app-primary-color: black;
+        --app-secondary-color: #333;
+        --app-bg-color: white;
+        --app-main-text-color: black;
+        --app-highlight-bg-color: yellow;
+        --app-highlight-text-color: black;
+        --app-lesson-viewer-bg: white;
+        --app-sidebar-bg: white;
+        --app-primary-text-color: white;
+        --app-secondary-text-color: white;
+    }
+    body { padding-top: 0; background-color: white !important; color: black !important; }
+    #main-navbar, #text-selection-menu, #sidebarTabsDesktop, #sidebarTabsMobile, .modal,
+    #settings-btn, #load-lesson-btn, #save-lesson-btn, .offcanvas,
+    #toggle-corrections-btn-desktop, #toggle-corrections-btn-mobile, 
+    #save-summary-btn-desktop, #save-summary-btn-mobile {
+        display: none !important;
+    }
+    .app-main-container, .app-main-container > .row, .lesson-viewer-col, #desktop-sidebar-wrapper {
+        display: block !important; width: 100% !important; height: auto !important;
+        overflow: visible !important; background-color: white !important; border: none !important;
+    }
+    .lesson-viewer-content, #desktop-sidebar-wrapper .tab-content {
+        overflow: visible !important; padding: 0 !important;
+    }
+    .tab-pane { display: block !important; opacity: 1 !important; }
+    #desktop-sidebar-wrapper { page-break-before: always; padding-top: 20px !important; } /* Solo sidebar desktop per stampa */
+    #print-header-area {
+        display: block !important; margin-bottom: 20px; padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    #print-header-area h1, #print-header-area p { color: black !important; }
+    .highlighted { background-color: yellow !important; color: black !important; -webkit-print-color-adjust: exact; color-adjust: exact; }
+    .exercise { border: 1px solid #ccc !important; }
 }
